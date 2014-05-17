@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+Session = 'bkground'
+Windows = [
+  ['IRC',      'cd ~ && TERM=screen-256color weechat-curses'],
+  ['snucheat', 'cd ~/snucheat && ./app.py'],
+  ['@',        'cd ~/hyeon.me && ruby app.rb'],
+]
+
+`tmux has-session -t #{Session} 2> /dev/null`
+if $?.exitstatus == 1
+  Windows.each_with_index do |(window, cmd), i|
+    if i == 0
+      `tmux new-session -s #{Session} -n #{window} -d`
+    else
+      `tmux new-window -t #{Session}:#{i} -n #{window}`
+    end
+    `tmux send-keys -t #{Session} "#{cmd}" C-m`
+  end
+  `tmux select-window -t #{Session}:0`
+end
+if ENV['TMUX'].to_s.empty?
+  `tmux attach-session -t #{Session}`
+else
+  `tmux switch-client -t #{Session}`
+end

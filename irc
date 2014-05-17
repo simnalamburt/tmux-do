@@ -7,8 +7,10 @@ Windows = [
   ['@',        'cd ~/hyeon.me && ruby app.rb'],
 ]
 
+
 `tmux has-session -t #{Session} 2> /dev/null`
 if $?.exitstatus == 1
+  # 세션이 없을경우
   Windows.each_with_index do |(window, cmd), i|
     if i == 0
       `tmux new-session -s #{Session} -n #{window} -d`
@@ -19,8 +21,26 @@ if $?.exitstatus == 1
   end
   `tmux select-window -t #{Session}:0`
 end
+
 if ENV['TMUX'].to_s.empty?
+  # Attach
   `tmux attach-session -t #{Session}`
 else
+  # Switch : 이미 다른 세션에 들어가있는 경우
   `tmux switch-client -t #{Session}`
+end
+
+if $?.exitstatus == 1
+  # Attach 혹은 Switch 명령 실행에 실패한경우
+  class String
+    def brown; "\033[33m#{self}\033[0m" end
+    def bold;  "\033[1m#{self}\033[22m" end
+  end
+
+  puts ''
+  puts ' tmux 세션 생성이 완료되었습니다.'.brown
+  puts ' 아래의 커맨드를 입력해주세요.'
+  puts ''
+  puts '   $'.brown + " tmux attach -t #{Session}".bold
+  puts ''
 end

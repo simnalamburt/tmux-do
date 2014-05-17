@@ -7,6 +7,7 @@ Windows = [
   ['@',        'cd ~/hyeon.me && ruby app.rb'],
 ]
 
+initial = false
 
 `tmux has-session -t #{Session} 2> /dev/null`
 if $?.exitstatus == 1
@@ -20,6 +21,7 @@ if $?.exitstatus == 1
     `tmux send-keys -t #{Session} "#{cmd}" C-m`
   end
   `tmux select-window -t #{Session}:0`
+  initial = true
 end
 
 if ENV['TMUX'].to_s.empty?
@@ -38,7 +40,7 @@ if $?.exitstatus == 1
   end
 
   puts ''
-  puts ' tmux 세션 생성이 완료되었습니다.'.brown
+  puts ' tmux 세션 생성이 완료되었습니다.'.brown if initial
   puts ' 아래의 커맨드를 입력해주세요.'
   puts ''
   puts '   $'.brown + " tmux attach -t #{Session}".bold

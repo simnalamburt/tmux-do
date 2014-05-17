@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+### Configuration
 Session = 'bkground'
 Windows = [
   ['IRC',      'cd ~ && TERM=screen-256color weechat-curses'],
@@ -7,6 +8,9 @@ Windows = [
   ['@',        'cd ~/hyeon.me && ruby app.rb'],
 ]
 
+
+
+### Scripts
 initial = false
 
 `tmux has-session -t #{Session} 2> /dev/null`

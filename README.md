@@ -22,7 +22,7 @@ tmux script
   cd tmux-script
   ./irc
 
-   # or link it to your $PATH dir
+  # or link it to your $PATH dir
   ln -s $PWD/irc ~/.local/bin/
   irc
   ```

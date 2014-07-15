@@ -3,7 +3,7 @@
 ### Configuration
 Session = 'bkground'
 Windows = [
-  ['IRC',      'cd ~ && TERM=screen-256color weechat-curses'],
+# ['IRC',      'cd ~ && TERM=screen-256color weechat-curses'],
   ['snucheat', 'cd ~/snucheat && ./app.py'],
   ['@',        'cd ~/hyeon.me && ruby app.rb'],
 ]

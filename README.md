@@ -5,27 +5,19 @@ tmux-do
 
 ### How to use
 
-* Option 1. Run the script directly from Github
+1.  Create sessions
 
-  ```
-  # with cURL
-  \curl -sSL https://bit.ly/1j6q2vU | ruby
+    ```
+    git clone https://github.com/simnalamburt/tmux-do.git ~/.tmux-do
+    cd ~/.tmux-do
+    ruby init.rb
+    ```
 
-  # with Wget
-  wget -qO - https://bit.ly/1j6q2vU | ruby
-  ```
+2.  Add the helper directory to `PATH`
 
-* Option 2. Save the script into your server
-
-  ```
-  git clone https://github.com/simnalamburt/tmux-do.git
-  cd tmux-do
-  ./irc
-
-  # or link it to your $PATH dir
-  ln -s $(pwd)/irc ~/.local/bin/
-  irc
-  ```
+    ```
+    export PATH="$HOME/.tmux-do/bin:$PATH"
+    ```
 
 ### Requirements
 

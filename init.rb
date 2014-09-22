@@ -15,10 +15,13 @@ config.each do |(session, windows)|
 
   # Initialize session if tmux has-session exit with 1
   windows.each_with_index do |(window, cmd), i|
+    opt = ''
+    opt += " -n #{window}" unless window == '-'
+
     if i == 0
-      `tmux new-session -s #{session} -n #{window} -d`
+      `tmux new-session -s #{session} -d #{opt}`
     else
-      `tmux new-window -t #{session}:#{i} -n #{window}`
+      `tmux new-window -t #{session} #{opt}`
     end
     `tmux send-keys -t #{session} "#{cmd}" C-m` if cmd
   end

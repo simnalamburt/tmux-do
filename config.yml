@@ -3,3 +3,5 @@ bkground:
   hyeonme:    cd ~/hyeon.me && ruby server.rb
 irc:
   weechat:    cd ~ && TERM=screen-256color weechat-curses
+z:
+  -:          cd ~

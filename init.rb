@@ -30,7 +30,7 @@ config.each do |(session, windows)|
       `tmux send-keys -t #{session} "#{line}" C-m`
     end
   end
-  `tmux select-window -t #{session}:0`
+  `tmux select-window -t #{session}:$`
 
   log.push session
 end

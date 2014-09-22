@@ -24,7 +24,11 @@ config.each do |(session, windows)|
     else
       `tmux new-window -t #{session} #{opt}`
     end
-    `tmux send-keys -t #{session} "#{cmd}" C-m` if cmd
+
+    next unless cmd
+    cmd.split("\n").each do |line|
+      `tmux send-keys -t #{session} "#{line}" C-m`
+    end
   end
   `tmux select-window -t #{session}:0`
 

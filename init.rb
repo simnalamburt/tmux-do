@@ -2,6 +2,7 @@ require 'yaml'
 
 def brown str; "\033[33m#{str}\033[0m" end
 
+Dir.chdir File.dirname __FILE__
 config = YAML.load File.read 'config.yml'
 
 

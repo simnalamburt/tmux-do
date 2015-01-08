@@ -3,8 +3,8 @@ bkground:
     cd ~/snucheat
     ./app.py
 
-  hyeonme: |
-    cd ~/hyeon.me
+  memo: |
+    cd ~/memo
     ruby server.rb
 
 irc:
@@ -12,6 +12,3 @@ irc:
     cd ~
     export TERM=screen-256color
     weechat-curses
-
-z:
-  -: cd ~

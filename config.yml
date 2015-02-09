@@ -5,6 +5,7 @@ bkground:
 
   memo: |
     cd ~/memo
+    export RACK_ENV=production
     ruby server.rb
 
 irc:

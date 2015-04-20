@@ -1,15 +1,10 @@
+#!/usr/bin/env ruby
 require 'yaml'
 
-def brown str; "\033[33m#{str}\033[0m" end
-
-Dir.chdir File.dirname __FILE__
-config = YAML.load File.read 'config.yml'
-
-
-## Create sessions
 log = []
 
-config.each do |(session, windows)|
+# Create sessions
+YAML.load(DATA).each do |(session, windows)|
   `tmux has-session -t #{session} 2> /dev/null`
   next unless $?.exitstatus == 1
   next unless windows
@@ -32,11 +27,28 @@ config.each do |(session, windows)|
   end
   `tmux select-window -t #{session}:$`
 
-  log.push session
+  log << session
 end
 
 unless log.empty?
-  puts "Initialized #{log.map { |a| brown a } .join ', '}"
+  puts "Initialized #{log.map { |a| "\033[33m#{str}\033[0m" } .join ', '}"
 else
   puts 'Everything up-to-date'
 end
+
+__END__
+bkground:
+  snucheat: |
+    cd ~/snucheat
+    ./app.py
+
+  memo: |
+    cd ~/memo
+    export RACK_ENV=production
+    ruby server.rb
+
+irc:
+  weechat: |
+    cd ~
+    export TERM=screen-256color
+    weechat-curses

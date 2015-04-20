@@ -40,26 +40,3 @@ unless log.empty?
 else
   puts 'Everything up-to-date'
 end
-
-
-## Create helper shell scripts
-log = []
-
-Dir.mkdir 'bin' unless Dir.exist? 'bin'
-
-config.each do |(session)|
-  path = "bin/#{session}"
-  next if File.exist? path
-
-  f = File.new path, 'w'
-  f.chmod 0755
-  f.write "#!/bin/sh\n"
-  f.write "ruby $(dirname $0)/../go.rb #{session}\n"
-  f.close
-
-  log.push session
-end
-
-unless log.empty?
-  puts "New helper: #{log.map { |a| brown a } .join ', '}"
-end

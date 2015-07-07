@@ -31,7 +31,7 @@ YAML.load(DATA).each do |(session, windows)|
 end
 
 unless log.empty?
-  puts "Initialized #{log.map { |a| "\033[33m#{str}\033[0m" } .join ', '}"
+  puts "Initialized #{log.map { |a| "\033[33m#{a}\033[0m" } .join ', '}"
 else
   puts 'Everything up-to-date'
 end

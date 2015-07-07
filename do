@@ -42,13 +42,7 @@ bkground:
     cd ~/snucheat
     ./app.py
 
-  memo: |
-    cd ~/memo
-    export RACK_ENV=production
-    ruby server.rb
-
 irc:
   weechat: |
     cd ~
-    export TERM=screen-256color
-    weechat-curses
+    TERM=screen-256color weechat-curses
